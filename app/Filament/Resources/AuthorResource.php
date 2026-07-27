@@ -23,11 +23,14 @@ class AuthorResource extends Resource
     public static function form(Form $form): Form
     {
         return $form    
+          // untuk membuat form pada halaman create authors
             ->schema([
                 Forms\Components\TextInput::make(
                     'name')->required(),
                 Forms\Components\TextInput::make(
                     'username')->required(),
+
+                    // syntax yang berfungsi untuk menambahkan file atau foto avatar profile penulis(author)
                 Forms\Components\FileUpload::make(
                     'avatar')
                     ->image()
@@ -42,8 +45,13 @@ class AuthorResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+
+        //untuk menampilkan listcoulumns author yang sudah terdaftar 
             ->columns([
-                //
+                Tables\Columns\ImageColumn::make('avatar'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('username'),
+                Tables\Columns\TextColumn::make('bio')
             ])
             ->filters([
                 //
