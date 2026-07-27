@@ -48,7 +48,7 @@ class AuthorResource extends Resource
 
         //untuk menampilkan listcoulumns author yang sudah terdaftar 
             ->columns([
-                Tables\Columns\ImageColumn::make('avatar'),
+                Tables\Columns\ImageColumn::make('avatar')->circular(),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('username'),
                 Tables\Columns\TextColumn::make('bio')
@@ -58,6 +58,8 @@ class AuthorResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
