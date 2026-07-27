@@ -7,6 +7,7 @@ use App\Filament\Resources\AuthorResource\RelationManagers;
 use App\Models\Author;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\FormsComponent;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,13 +18,24 @@ class AuthorResource extends Resource
 {
     protected static ?string $model = Author::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     public static function form(Form $form): Form
     {
-        return $form
+        return $form    
             ->schema([
-                //
+                Forms\Components\TextInput::make(
+                    'name')->required(),
+                Forms\Components\TextInput::make(
+                    'username')->required(),
+                Forms\Components\FileUpload::make(
+                    'avatar')
+                    ->image()
+                    ->required(),
+
+                Forms\Components\Textarea::make(
+                    'bio')->required(),
+                    
             ]);
     }
 
